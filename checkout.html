@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Jasa Cek Turnitin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #000428, #004e92);
+            color: #fff;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.562);
+        }
+        .navbar-brand {
+            color: white;
+            font-weight: 700;
+        }
+        .hero-section {
+            background: url('https://example.com/galaxy-background.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.116);
+            z-index: 1;
+        }
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            z-index: 2;
+        }
+        .hero-section p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            z-index: 2;
+        }
+        .btn-custom {
+            background-color: #ff4081;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+            position: relative;
+            display: inline-block;
+        }
+        .btn-custom2 {
+            background-color: #1e76e9cb;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 2;
+            position: relative;
+            display: inline-block;
+        }
+        .btn-custom:hover {
+            background-color: #e91e63;
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        .btn-custom2:hover {
+            background-color: #1e76e9;
+            transform: scale(1.05);
+            text-decoration: none;
+        }
+        .footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .note {
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+        /* Styles for the receipt */
+        .receipt {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin: 20px 0;
+        }
+        .receipt h2 {
+            text-align: center;
+            color: #333;
+        }
+        .receipt p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .receipt-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .receipt-logo img {
+            width: 100px; /* Adjust logo size */
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">SATurnitin</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>Checkout Jasa Cek Turnitin</h1>
+        <p>Lengkapi data berikut untuk melanjutkan pembayaran.</p>
+    </section>
+
+    <!-- Checkout Form -->
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Rincian Paket</h5>
+                        <p id="packageDetails"></p> <!-- Display selected package details here -->
+                        <p id="priceDetails"></p> <!-- Display price here -->
+
+                        <form id="checkoutForm" method="POST" action="payment.html" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nama Lengkap</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Nomor Telepon</label>
+                                <input type="text" class="form-control" id="phone" name="phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="fileUpload" class="form-label">Upload File (Optional)</label>
+                                <input type="file" class="form-control" id="fileUpload" name="fileUpload">
+                               <p><small> &#128205;&#128205;&#9888; Upload file hanya untuk penyesuaian nama file yang akan dikirim melalui WhatsApp admin saja. Pembeli nanti harus mengirim file .docx-nya lagi di WhatsApp.</small></p>
+                            </div>
+
+                            <button type="button" class="btn btn-custom2 text-light" onclick="printReceipt();">Cetak/Unduh Nota</button>
+                            <button type="submit" class="btn btn-custom" id="paymentButton" style="display: none;">Lanjutkan Pembayaran</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Column for Notes and Merchant Logo -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Catatan</h5>
+                        <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Tulis catatan di sini..."></textarea>
+                        <p><small>Catatan atau request filter Turnitin yang diinginkan.</small></p>
+
+                        <h5 class="card-title mt-4">Metode Pembayaran</h5>
+                        <p>Pilih metode pembayaran:</p>
+                        
+                        <select class="form-select" id="paymentMethod" name="paymentMethod">
+                            <option value="shopeepay">ShopeePay</option>
+                            <option value="dana">Dana</option>
+                        </select>
+
+                        <!-- Payment Logo -->
+                        <div class="mt-3 text-center">
+                            <img id="paymentLogo" src="assets/ShopeePay.png" alt="Logo Merchant" class="img-fluid" style="width: 80px; height: auto;" />
+                        </div>
+
+                        <!-- Payment Note -->
+                        <div class="alert alert-info mt-3" role="alert">
+                            &#128226; Hai! Setelah memilih metode pembayaran, nanti kamu akan menerima QR code di WhatsApp admin ya.  
+                            Jangan lupa dicek dan segera lakukan pembayaran biar pesananmu bisa langsung diproses! &#128522;  
+                            Kalau ada pertanyaan, langsung chat aja ke admin. Kami siap bantu! &#128172;  
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Jasa Cek Turnitin | By SATurnitin</strong></p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        // Retrieve package details from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const package = urlParams.get('package');
+        const price = urlParams.get('price');
+
+        // Display package details and price
+        let packageName = '';
+        let packagePrice = '';
+
+        switch (package) {
+            case '1':
+                packageName = 'Paket Cek Turnitin 1 Kali : 1 kali cek, berlaku hingga 3 hari setelah pembelian.';
+                packagePrice = 'Rp 2.000';
+                break;
+            case '2':
+                packageName = 'Paket Cek Turnitin 2 Kali : 2 kali cek, sisa kuota berlaku hingga 1 minggu setelah pembelian.';
+                packagePrice = 'Rp 4.000';
+                break;
+            case '4':
+                packageName = 'Paket Cek Turnitin 4 Kali : 4 kali cek, sisa kuota berlaku hingga 1 bulan setelah pembelian.';
+                packagePrice = 'Rp 7.500';
+                break;
+            default:
+                packageName = 'Paket Tidak Dikenal';
+                packagePrice = 'Rp 0';
+        }
+
+        document.getElementById('packageDetails').innerHTML = `${packageName}`;
+        document.getElementById('priceDetails').innerHTML = `Harga: ${packagePrice}`;
+
+        // Form validation before submission
+        document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const notes = document.getElementById('notes').value; // Catatan dari pelanggan
+            const paymentMethod = document.getElementById('paymentMethod').value; // Metode pembayaran
+
+            // Mengambil nama file yang diupload (jika ada)
+            const fileInput = document.getElementById('fileUpload');
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'Tidak ada file yang diunggah';
+
+            // Menentukan metode pembayaran yang dipilih
+            let paymentMethodText = '';
+            if (paymentMethod === 'shopeepay') {
+                paymentMethodText = 'ShopeePay';
+            } else if (paymentMethod === 'dana') {
+                paymentMethodText = 'Dana';
+            } else {
+                paymentMethodText = 'Metode pembayaran tidak dikenal';
+            }
+
+            // Menyiapkan pesan yang akan dikirim ke WhatsApp
+            const message = `Pesanan Baru dari Pelanggan\n\n` +
+                            `Nama: ${name}\n` +
+                            `Email: ${email}\n` +
+                            `Telepon: ${phone}\n` +
+                            `Paket yang Dipilih: ${packageName}\n` +
+                            `Harga: ${packagePrice}\n` +
+                            `Nama File: ${fileName}\n` +
+                            `Catatan: ${notes}\n` +
+                            `Metode Pembayaran: ${paymentMethodText}\n\n` +
+                            `Terima kasih telah memilih layanan kami! Kami akan segera memproses pesanan Anda. Jika ada pertanyaan, jangan ragu untuk menghubungi kami!`;
+
+            // Mengarahkan pengguna ke WhatsApp dengan pesan
+            const whatsappURL = `https://wa.me/6285748174086?text=${encodeURIComponent(message)}`;
+            window.location.href = whatsappURL;
+
+            // Mencegah form submit jika Anda tidak ingin melanjutkan ke halaman lain
+            event.preventDefault();
+        });
+
+        document.getElementById("paymentMethod").addEventListener("change", function() {
+            let logoMap = {
+                "shopeepay": "assets/ShopeePay.png",
+                "dana": "assets/Dana_Logo.png"
+            };
+
+            let selectedMethod = this.value;
+            document.getElementById("paymentLogo").src = logoMap[selectedMethod];
+        });
+
+        // Function to print or download the receipt
+        function printReceipt() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const notes = document.getElementById('notes').value; // Catatan dari pelanggan
+            const paymentMethod = document.getElementById('paymentMethod').value; // Metode pembayaran
+
+            // Mengambil nama file yang diupload (jika ada)
+            const fileInput = document.getElementById('fileUpload');
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'Tidak ada file yang diunggah';
+
+            // Menyiapkan isi nota
+            const receiptContent = `
+                <html>
+                <head>
+                    <title>Nota Pembayaran</title>
+                    <style>
+                        body {
+                            font-family: 'Roboto', sans-serif;
+                            margin: 20px;
+                        }
+                        h2 {
+                            text-align: center;
+                            color: #333;
+                        }
+                        table {
+                            width: 100%;
+                            margin-top: 20px;
+                            border-collapse: collapse;
+                        }
+                        th, td {
+                            padding: 10px;
+                            text-align: left;
+                            border: 1px solid #ccc;
+                        }
+                        th {
+                            background-color: #f2f2f2;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="receipt">
+                        <div class="receipt-logo">
+                            <img src="assets/logo.png" alt="Logo" /> <!-- Ganti dengan path logo Anda -->
+                        </div>
+                        <h2>Nota Pembayaran</h2>
+                        <table>
+                            <tr>
+                                <th>Detail</th>
+                                <th>Informasi</th>
+                            </tr>
+                            <tr>
+                                <td>Nama</td>
+                                <td>${name}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>${email}</td>
+                            </tr>
+                            <tr>
+                                <td>Telepon</td>
+                                <td>${phone}</td>
+                            </tr>
+                            <tr>
+                                <td>Paket yang Dipilih</td>
+                                <td>${packageName}</td>
+                            </tr>
+                            <tr>
+                                <td>Harga</td>
+                                <td>${packagePrice}</td>
+                            </tr>
+                            <tr>
+                                <td>Nama File</td>
+                                <td>${fileName}</td>
+                            </tr>
+                            <tr>
+                                <td>Catatan</td>
+                                <td>${notes}</td>
+                            </tr>
+                            <tr>
+                                <td>Metode Pembayaran</td>
+                                <td>${paymentMethod}</td>
+                            </tr>
+                        </table>
+                        <p><strong>Terima kasih telah menggunakan layanan kami!</strong></p>
+                    </div>
+                </body>
+                </html>
+            `;
+
+            // Membuat jendela baru untuk mencetak
+            const printWindow = window.open('', '', 'height=600,width=800');
+            printWindow.document.write(receiptContent);
+            printWindow.document.close(); // Close the document
+            printWindow.print(); // Print the document
+
+            // Tampilkan tombol pembayaran setelah nota dicetak
+            document.getElementById('paymentButton').style.display = 'inline-block';
+        }
+    </script>
+</body>
+</html>
